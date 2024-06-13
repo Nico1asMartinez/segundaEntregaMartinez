@@ -1,53 +1,46 @@
-import { Router } from "express";
+import express from "express";
+import CartManager from "../controllers/cart.manager.js";
 
-const router = Router();
+const router = express.Router();
+const cartManager = new CartManager("../data/carts.json");
 
-const users = [];
 
-router.post("/", (req, res) => {
-
-    const newCart = {
-        products: [],
-        id: users.length + 1
+router.post("/", async (req, res) => {
+    try {
+        const newCart = await cartManager.crearCarrito();
+        res.json(newCart);
+    } catch (error) {
+        console.error("Error al crear un nuevo carrito", error);
+        res.status(500).json({ error: "Error interno del servidor" });
     }
-    users.push(newCart);
-
-    res.status(201).json(newCart);
-})
+});
 
 
-router.get("/:cid", (req, res) => {
+router.get("/:cid", async (req, res) => {
+    const cid = parseInt(req.params.cid);
 
-    const { cid } = req.params;
-    const userFound = users.find(user => user.id === parseInt(cid));
-
-    if (!userFound) {
-        res.status(404).json({ error: "Carrito no encontrado" });
-        return;
+    try {
+        const cart = await cartManager.getCarritoById(cid);
+        res.json(cart.products);
+    } catch (error) {
+        console.error("Error al obtener el carrito", error);
+        res.status(500).json({ error: "Error interno del servidor" });
     }
-    res.json(userFound);
-})
+});
 
-router.post("/:cid/product/:pid", (req, res) => {
 
-    const { cid, pid } = req.params;
+router.post("/:cid/product/:pid", async (req, res) => {
+    const cid = parseInt(req.params.cid);
+    const productId = req.params.pid;
+    const quantity = req.body.quantity || 1;
 
-    const userFound = users.find(user => user.id === parseInt(cid));
-    const productFound = userFound.products.find(product => product.id === parseInt(pid));
-
-    if (!userFound) {
-        res.status(404).json({ error: "Carrito no encontrado" });
-        return;
+    try {
+        const updateCart = await cartManager.agregarProductoAlCarrito(cid, productId, quantity);
+        res.json(updateCart.products);
+    } catch (error) {
+        console.error("Error al agregar producto al carrito", error);
+        res.status(500).json({ error: "Error interno del servidor" });
     }
-    if (!productFound) {
-        res.status(404).json({ error: "Producto no encontrado" });
-        return;
-    }
-    userFound.products.push(productFound);
-    res.status(201).json({ message: "Producto agregado al carrito" });
-})
+});
 
-
-
-
-export default router
+export default router;

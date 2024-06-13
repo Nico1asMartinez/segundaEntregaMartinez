@@ -1,0 +1,102 @@
+[
+    {
+        "title": "Portátil",
+        "description": "Un portátil de alto rendimiento adecuado para juegos y productividad.",
+        "code": "PT1001",
+        "price": 1200.00,
+        "status": "disponible",
+        "stock": 15,
+        "category": "Electrónica",
+        "thumbnails": ["portatil1.jpg", "portatil2.jpg"]
+    },
+    {
+        "title": "Teléfono Inteligente",
+        "description": "Un smartphone de última generación con una cámara y pantalla impresionantes.",
+        "code": "TI2002",
+        "price": 800.00,
+        "status": "disponible",
+        "stock": 30,
+        "category": "Electrónica",
+        "thumbnails": ["telefono1.jpg", "telefono2.jpg"]
+    },
+    {
+        "title": "Auriculares Inalámbricos",
+        "description": "Auriculares con cancelación de ruido y larga duración de batería.",
+        "code": "AI3003",
+        "price": 150.00,
+        "status": "disponible",
+        "stock": 50,
+        "category": "Accesorios",
+        "thumbnails": ["auriculares1.jpg", "auriculares2.jpg"]
+    },
+    {
+        "title": "Cafetera",
+        "description": "Cafetera automática con configuraciones programables y molinillo integrado.",
+        "code": "CF4004",
+        "price": 250.00,
+        "status": "agotado",
+        "stock": 0,
+        "category": "Electrodomésticos de Cocina",
+        "thumbnails": ["cafetera1.jpg", "cafetera2.jpg"]
+    },
+    {
+        "title": "Cepillo de Dientes Eléctrico",
+        "description": "Cepillo de dientes eléctrico recargable con múltiples modos de cepillado.",
+        "code": "CE5005",
+        "price": 60.00,
+        "status": "disponible",
+        "stock": 20,
+        "category": "Cuidado Personal",
+        "thumbnails": ["cepillo1.jpg", "cepillo2.jpg"]
+    },
+    {
+        "title": "Silla Gamer",
+        "description": "Silla ergonómica para juegos con reposabrazos ajustables y soporte lumbar.",
+        "code": "SG6006",
+        "price": 300.00,
+        "status": "disponible",
+        "stock": 10,
+        "category": "Muebles",
+        "thumbnails": ["silla1.jpg", "silla2.jpg"]
+    },
+    {
+        "title": "Licuadora",
+        "description": "Licuadora de alta velocidad con múltiples funciones preestablecidas y cuchillas duraderas.",
+        "code": "LI7007",
+        "price": 100.00,
+        "status": "disponible",
+        "stock": 25,
+        "category": "Electrodomésticos de Cocina",
+        "thumbnails": ["licuadora1.jpg", "licuadora2.jpg"]
+    },
+    {
+        "title": "Televisor 4K",
+        "description": "Televisor inteligente 4K Ultra HD de 55 pulgadas con HDR y control por voz.",
+        "code": "TV8008",
+        "price": 600.00,
+        "status": "disponible",
+        "stock": 8,
+        "category": "Electrónica",
+        "thumbnails": ["televisor1.jpg", "televisor2.jpg"]
+    },
+    {
+        "title": "Zapatillas para Correr",
+        "description": "Zapatillas ligeras para correr con material transpirable y buen agarre.",
+        "code": "ZC9009",
+        "price": 120.00,
+        "status": "disponible",
+        "stock": 40,
+        "category": "Ropa Deportiva",
+        "thumbnails": ["zapatillas1.jpg", "zapatillas2.jpg"]
+    },
+    {
+        "title": "Esterilla de Yoga",
+        "description": "Esterilla de yoga antideslizante con amortiguación y durabilidad.",
+        "code": "EY1010",
+        "price": 40.00,
+        "status": "disponible",
+        "stock": 60,
+        "category": "Equipos de Fitness",
+        "thumbnails": ["esterilla1.jpg", "esterilla2.jpg"]
+    }
+]

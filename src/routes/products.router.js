@@ -3,105 +3,98 @@ import { Router} from "express";
 const router = Router();
 
 
-
-const products = [
-    {
-        "title": "Pepe",
-        "description": "Argento",
-        "code": "nc",
-        "price":123,
-        "status":"ok",
-        "stock":9,
-        "category":"persona",
-        "id":1
-    },
-
-
-    
-];
+import ProductManager from "../controllers/product.manager.js";
+const ProductManager = new ProductManager("../data/products.json");
 
 
 
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+    try {
+        const limit = req.query.limit;
+        const products = await ProductManager.getProducts();
+        if (limit) {
+            res.json(products.slice(0, limit));
+        } else {
+            res.json(products);
+        }
+    }  catch (error) {
+        console.log("Error al obtener los productos", error);
+        res.status(500).json({ error: "Error al obtener los productos" });
+}
+});
 
-    res.json(products);
+router.get("/:pid", async (req, res) => {
 
-})
+    const pid = req.params.pid;
 
-router.get("/:pid", (req, res) => {
+    try {
+        const product = await productManager.getProductById(parseInt(pid));
+        if (!product) {
+            return res.json({
+                error: "Producto no encontrado"
+            });
+        }
 
-    const { pid } = req.params;
-
-    res.json(products[pid]);
-
-})
-
-router.put("/:pid", (req, res) => {
-
-    const id = parseInt(req.params.pid);
-    const { title, description, code, price, status, stock, category } = req.body;
-
-    const productFound = products.find(product => product.id === id);
-
-
-    if (productFound) {
-
-        const index = products.findIndex(product => product.id === id);
-
-
-        products[index] = {...products[index], title, description, code, price, status, stock, category};
-
-
-        res.json({
-            message: "Producto actualizado",
-            response: products[index]
-
+        res.json(product);
+    } catch (error) {
+        console.error("Error al obtener producto", error);
+        res.status(500).json({
+            error: "Error interno del servidor"
         });
-
-    
-
     }
+});
 
-})
 
+router.post("/", async (req, res) => {
+    const newProduct = req.body;
 
-router.post("/", (req, res) => {
-
-    const title = req.body.title;
-    const description = req.body.description;
-    const code = req.body.code;
-    const price = req.body.price;
-    const status = req.body.status;
-    const stock = req.body.stock;
-    const category = req.body.category;
-    
-
-    if (!title || !description || !code || !price || !status || !stock || !category) {
-        res.status(400).json({ error: "Faltan datos" });
-        return;
+    try {
+        await productManager.addProduct(newProduct);
+        res.status(201).json({
+            message: "Producto agregado exitosamente"
+        });
+    } catch (error) {
+        console.error("Error al agregar producto", error);
+        res.status(500).json({
+            error: "Error interno del servidor"
+        });
     }
-
-    let id = products[products.length - 1].id + 1;
-    products.push({ id, title, description, code, price, status, stock, category });
-    res.status(201).json({ id });
-
-})
+});
 
 
-router.delete("/:pid", (req, res) => {
+router.put("/:pid", async (req, res) => {
+    const pid = req.params.pid;
+    const updateProduct= req.body;
 
-    const { pid } = req.params;
-    const productFound = products.find(product => product.id === parseInt(pid));
-
-    if (!productFound) {
-        res.status(404).json({ error: "Producto no encontrado" });
-        return;
+    try {
+        await productManager.updateProduct(parseInt(pid), updateProduct);
+        res.json({
+            message: "Producto actualizado exitosamente"
+        });
+    } catch (error) {
+        console.error("Error al actualizar producto", error);
+        res.status(500).json({
+            error: "Error interno del servidor"
+        });
     }
+});
 
-    const index = products.findIndex(product => product.id === parseInt(pid));
-    products.splice(index, 1);
-    res.status(200).json({ message: `usuario con id ${pid} eliminado` });
-})
+
+router.delete("/:pid", async (req, res) => {
+    const pid = req.params.pid;
+
+    try {
+        await productManager.deleteProduct(parseInt(pid));
+        res.json({
+            message: "Producto eliminado exitosamente"
+        });
+    } catch (error) {
+        console.error("Error al eliminar producto", error);
+        res.status(500).json({
+            error: "Error interno del servidor"
+        });
+    }
+});
 
 export default router;
