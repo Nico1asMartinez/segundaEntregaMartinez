@@ -2,9 +2,8 @@ import { Router} from "express";
 
 const router = Router();
 
-
 import ProductManager from "../controllers/product.manager.js";
-const ProductManager = new ProductManager("../data/products.json");
+const productManager = new ProductManager("./src/data/products.json");
 
 
 
@@ -12,7 +11,7 @@ const ProductManager = new ProductManager("../data/products.json");
 router.get("/", async (req, res) => {
     try {
         const limit = req.query.limit;
-        const products = await ProductManager.getProducts();
+        const products = await productManager.getProducts();
         if (limit) {
             res.json(products.slice(0, limit));
         } else {
