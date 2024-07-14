@@ -5,7 +5,8 @@ import displayroutes from "express-routemap";
 import productsRouter from "./routes/products.router.js";
 import cartRouter from "./routes/cart.router.js";
 import viewsRouter from "./routes/views.router.js";
-import ProductManager from "./controllers/product.manager.js";
+import ProductManager from "./dao/fs/product.manager.js";
+import "./database.js";
 
 const app = express(); 
 
@@ -48,7 +49,7 @@ const httpServer =  app.listen(PUERTO, () => {
 
 })
 
-const productManager = new ProductManager("./src/data/products.json");
+const productManager = new ProductManager("./src/dao/db/product-manager-db.js");
 
 const io = new Server(httpServer);
 

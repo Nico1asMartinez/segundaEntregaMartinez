@@ -1,6 +1,6 @@
 [
   {
-    "id": 2,
+    
     "title": "Teléfono Inteligente",
     "description": "Un smartphone de última generación con una cámara y pantalla impresionantes.",
     "code": "TI2002",
@@ -14,7 +14,7 @@
     ]
   },
   {
-    "id": 3,
+    
     "title": "Auriculares Inalámbricos",
     "description": "Auriculares con cancelación de ruido y larga duración de batería.",
     "code": "AI3003",
@@ -28,7 +28,7 @@
     ]
   },
   {
-    "id": 4,
+    
     "title": "Cafetera",
     "description": "Cafetera automática con configuraciones programables y molinillo integrado.",
     "code": "CF4004",
@@ -42,7 +42,7 @@
     ]
   },
   {
-    "id": 5,
+    
     "title": "Cepillo de Dientes Eléctrico",
     "description": "Cepillo de dientes eléctrico recargable con múltiples modos de cepillado.",
     "code": "CE5005",
@@ -56,7 +56,7 @@
     ]
   },
   {
-    "id": 6,
+    
     "title": "Silla Gamer",
     "description": "Silla ergonómica para juegos con reposabrazos ajustables y soporte lumbar.",
     "code": "SG6006",
@@ -70,7 +70,7 @@
     ]
   },
   {
-    "id": 7,
+    
     "title": "Licuadora",
     "description": "Licuadora de alta velocidad con múltiples funciones preestablecidas y cuchillas duraderas.",
     "code": "LI7007",
@@ -84,7 +84,7 @@
     ]
   },
   {
-    "id": 8,
+    
     "title": "Televisor 4K",
     "description": "Televisor inteligente 4K Ultra HD de 55 pulgadas con HDR y control por voz.",
     "code": "TV8008",
@@ -98,7 +98,7 @@
     ]
   },
   {
-    "id": 9,
+    
     "title": "Zapatillas para Correr",
     "description": "Zapatillas ligeras para correr con material transpirable y buen agarre.",
     "code": "ZC9009",
@@ -120,7 +120,7 @@
     "stock": "1",
     "category": "deporte",
     "status": true,
-    "thumbnails": [],
-    "id": 10
+    "thumbnails": []
+    
   }
 ]
