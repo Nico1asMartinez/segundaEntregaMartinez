@@ -2,34 +2,32 @@ import express from "express";
 const router = express.Router();
 import ProductManager from "../dao/db/product-manager-db.js";
 import CartManager from "../dao/db/cart-manager-db.js";
-import ProductModel from "../dao/models/product.model.js";
 
 const productManager = new ProductManager();
 const cartManager = new CartManager();
 
 
-
-
-
-
 router.get("/products", async (req, res) => {
    try {
-      const { page = 1, limit = 4 } = req.query;
-      const products = await ProductModel.paginate({}, {page, limit});
+      const { page = 1, limit = 2 } = req.query;
+      const productos = await productManager.getProducts({
+         page: parseInt(page),
+         limit: parseInt(limit)
+      });
 
-      let nuevoArray = products.docs.map(producto => {
+      const nuevoArray = productos.docs.map(producto => {
          const { _id, ...rest } = producto.toObject();
          return rest;
       });
 
       res.render("products", {
          productos: nuevoArray,
-         hasPrevPage: products.hasPrevPage,
-         hasNextPage: products.hasNextPage,
-         prevPage: products.prevPage,
-         nextPage: products.nextPage,
-         currentPage: products.page,
-         totalPages: products.totalPages
+         hasPrevPage: productos.hasPrevPage,
+         hasNextPage: productos.hasNextPage,
+         prevPage: productos.prevPage,
+         nextPage: productos.nextPage,
+         currentPage: productos.page,
+         totalPages: productos.totalPages
       });
 
    } catch (error) {
@@ -53,8 +51,7 @@ router.get("/carts/:cid", async (req, res) => {
       }
 
       const productosEnCarrito = carrito.products.map(item => ({
-         product: item.product.toObject(),
-         //Lo convertimos a objeto para pasar las restricciones de Exp Handlebars. 
+         product: item.product.toObject(), 
          quantity: item.quantity
       }));
 
